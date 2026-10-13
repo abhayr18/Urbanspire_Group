@@ -2889,9 +2889,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="ecc-video n-self no-interactions" data-controls="false">
 
-                    <video autoplay playsinline muted loop style="width: 100%;display: block" class="n-video">
-                        <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/home_slide_1-1.mp4">
-                    </video>
+                    <video autoplay playsinline webkit-playsinline muted loop preload="auto" poster="https://ecccontracting.ae/wp-content/uploads/2024/06/construction-hero-img.webp" style="width: 100%; height: 100%; object-fit: cover; display: block;" class="n-video" id="hero-video-1">
+      <source src="/videos/slide_1.mp4" type="video/mp4">
+      <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/home_slide_1-1.mp4" type="video/mp4">
+  </video>
 
                 </div>
 
@@ -2967,9 +2968,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="ecc-video n-self no-interactions" data-controls="false">
 
-                    <video autoplay playsinline muted loop style="width: 100%;display: block" class="n-video">
-                        <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/excellence-at-the-core-1.mp4">
-                    </video>
+                    <video playsinline webkit-playsinline muted loop preload="metadata" poster="https://ecccontracting.ae/wp-content/uploads/w-residence-hero.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;" class="n-video" id="hero-video-2">
+      <source src="/videos/slide_2.mp4" type="video/mp4">
+      <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/excellence-at-the-core-1.mp4" type="video/mp4">
+  </video>
 
                 </div>
 
@@ -3045,9 +3047,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="ecc-video n-self no-interactions" data-controls="false">
 
-                    <video autoplay playsinline muted loop style="width: 100%;display: block" class="n-video">
-                        <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/the-group-video-slider-1.mp4">
-                    </video>
+                    <video playsinline webkit-playsinline muted loop preload="none" poster="https://ecccontracting.ae/wp-content/uploads/thegroup-abanos.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;" class="n-video" id="hero-video-3">
+      <source src="/videos/slide_3.mp4" type="video/mp4">
+      <source src="https://ecccontracting.ae/wp-content/uploads/2024/07/the-group-video-slider-1.mp4" type="video/mp4">
+  </video>
 
                 </div>
 
@@ -3249,9 +3252,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				</div>
 				</div>
 				</div>
-		<div class="elementor-element elementor-element-a4ed41b wrapper-fuller e-con-full section-normal e-flex default e-con e-parent" data-id="a4ed41b" data-element_type="container" data-e-type="container" data-settings="{&quot;background_video_link&quot;:&quot;https:\/\/ecccontracting.ae\/wp-content\/uploads\/2024\/01\/ECC-VIDA-grand-bleu-look.mov&quot;,&quot;background_background&quot;:&quot;video&quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;}">
+		<div class="elementor-element elementor-element-a4ed41b wrapper-fuller e-con-full section-normal e-flex default e-con e-parent" data-id="a4ed41b" data-element_type="container" data-e-type="container" data-settings="{&quot;background_video_link&quot;:&quot;/videos/slide_1.mp4&quot;,&quot;background_background&quot;:&quot;video&quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;}">
 		<div class="elementor-background-video-container">
-							<video class="elementor-background-video-hosted" role="presentation" autoplay muted playsinline loop></video>
+							<video class="elementor-background-video-hosted" role="presentation" playsinline webkit-playsinline muted loop preload="none" poster="https://ecccontracting.ae/wp-content/uploads/2023/12/ben-allan-BIeC4YK2MTA-unsplash.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+      <source src="/videos/slide_1.mp4" type="video/mp4">
+  </video>
 					</div><div class="elementor-element elementor-element-da59fc2 e-con-full wrapper-wide section-normal e-flex default e-con e-child" data-id="da59fc2" data-element_type="container" data-e-type="container">
 		<div class="elementor-element elementor-element-8084bbf wrapper-fuller e-con-full section-normal e-flex default e-con e-child" data-id="8084bbf" data-element_type="container" data-e-type="container">
 		<div class="elementor-element elementor-element-58ed000 e-con-full wrapper-wide section-normal e-flex default e-con e-child" data-id="58ed000" data-element_type="container" data-e-type="container">
@@ -5977,7 +5982,86 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 //# sourceURL=https://ecccontracting.ae/wp-includes/js/wp-emoji-loader.min.js
 </script>
 
+
+<script>
+// Smart Performance & Video Lifecycle Manager
+(function() {
+  const v1 = document.getElementById('hero-video-1');
+  const v2 = document.getElementById('hero-video-2');
+  const v3 = document.getElementById('hero-video-3');
+  const videos = [v1, v2, v3].filter(Boolean);
+
+  // Ensure initial active video plays smoothly
+  function playActiveVideo() {
+    if (v1 && v1.paused) {
+      v1.play().catch(function() {});
+    }
+  }
+
+  // IntersectionObserver to pause videos when scrolled out of view (saves massive CPU/battery)
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        const vid = entry.target;
+        if (entry.isIntersecting) {
+          if (vid === v1 || vid.closest('.swiper-slide-active, .active, .current')) {
+            vid.play().catch(function() {});
+          }
+        } else {
+          vid.pause();
+        }
+      });
+    }, { threshold: 0.15 });
+
+    videos.forEach(function(v) { videoObserver.observe(v); });
+
+    const bgVid = document.querySelector('.elementor-background-video-hosted');
+    if (bgVid) {
+      const bgObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            bgVid.play().catch(function() {});
+          } else {
+            bgVid.pause();
+          }
+        });
+      }, { threshold: 0.1 });
+      bgObserver.observe(bgVid);
+    }
+  }
+
+  // Handle slide transitions to intelligently switch video playback
+  document.addEventListener('DOMContentLoaded', function() {
+    playActiveVideo();
+    window.addEventListener('click', playActiveVideo, { once: true });
+    window.addEventListener('touchstart', playActiveVideo, { once: true });
+  });
+
+  // When Swiper or custom sliders rotate, synchronize video playback
+  const sliderTrack = document.querySelector('.showcase-slider, .swiper-wrapper, .n-slider');
+  if (sliderTrack && 'MutationObserver' in window) {
+    const mutObserver = new MutationObserver(function() {
+      videos.forEach(function(v) {
+        const parentSlide = v.closest('.swiper-slide, .showcase-project, .slide-item');
+        if (parentSlide) {
+          const isActive = parentSlide.classList.contains('swiper-slide-active') || 
+                           parentSlide.classList.contains('active') ||
+                           parentSlide.classList.contains('current') ||
+                           window.getComputedStyle(parentSlide).opacity > 0.5;
+          if (isActive) {
+            if (v.paused) v.play().catch(function() {});
+          } else {
+            if (!v.paused) v.pause();
+          }
+        }
+      });
+    });
+    mutObserver.observe(sliderTrack, { attributes: true, subtree: true, attributeFilter: ['class', 'style'] });
+  }
+})();
+</script>
 </body>
+
 
 </html>
 
