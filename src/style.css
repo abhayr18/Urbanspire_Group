@@ -650,11 +650,12 @@ body.no-scroll {
 }
 
 /* ==========================================================================
-   WELCOME SECTION
+   CONSOLIDATED EXECUTIVE OVERVIEW & COMPACT PERFORMANCE METRICS
    ========================================================================== */
-.section-welcome {
-  padding: 100px 50px 80px 50px;
+.section-welcome-metrics {
+  padding: 80px 50px 70px 50px;
   background-color: #ffffff;
+  border-bottom: 1px solid var(--eccGrayBorder);
 }
 
 .container-welcome {
@@ -665,14 +666,14 @@ body.no-scroll {
 .h2-line-bottom {
   display: inline-block;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--eccAccent);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   position: relative;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .h2-line-bottom::after {
@@ -680,146 +681,99 @@ body.no-scroll {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 35px;
+  width: 32px;
   height: 2px;
   background-color: var(--eccAccent);
 }
 
 .welcome-header-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 600;
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 700;
   color: var(--eccDark);
   letter-spacing: -0.01em;
-  line-height: 1.25;
-  margin-bottom: 35px;
+  line-height: 1.2;
+  margin-bottom: 20px;
   max-width: 950px;
 }
 
-.welcome-grid {
+.overview-top-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 50px;
+  align-items: center;
   margin-bottom: 45px;
 }
 
-.welcome-grid p {
-  font-size: 1.08rem;
+.welcome-main-p {
+  font-size: 1.05rem;
   color: var(--eccTextMuted);
-  line-height: 1.75;
+  line-height: 1.7;
+  margin-bottom: 18px;
 }
 
-.welcome-buttons-row {
-  display: flex;
+.overview-action {
+  margin-top: 10px;
+}
+
+.overview-link {
+  display: inline-flex;
   align-items: center;
-  gap: 35px;
-  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--eccDark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 2px solid var(--eccAccent);
+  padding-bottom: 4px;
+  transition: all 0.25s ease;
 }
 
-/* ==========================================================================
-   METRICS & ACCREDITATIONS
-   ========================================================================== */
-.section-metrics-banner {
-  position: relative;
-  padding: 90px 50px;
-  background-color: var(--eccDark);
-  color: #fff;
-  overflow: hidden;
+.overview-link:hover {
+  color: var(--eccAccent);
+  gap: 12px;
 }
 
-.banner-bg-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.18;
-}
-
-.banner-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1320px;
-  margin: 0 auto;
-}
-
-.counters-grid {
+/* Compact 4-Stat Metric Strip */
+.compact-metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  margin-bottom: 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding-bottom: 50px;
+  gap: 20px;
+  background: var(--eccDark);
+  padding: 35px 40px;
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(3, 20, 39, 0.12);
 }
 
-.counter-item {
+.compact-metric-card {
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  padding-left: 22px;
   display: flex;
   flex-direction: column;
 }
 
-.counter-title {
-  font-size: 0.85rem;
+.compact-metric-card:first-child {
+  border-left-color: var(--eccAccent);
+}
+
+.compact-num {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 2.6vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.compact-lbl {
   font-family: var(--font-mono);
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-}
-
-.counter-number {
-  font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1;
-}
-
-.counter-suffix {
-  color: var(--eccAccent);
-}
-
-.certifications-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.cert-badge-box {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 12px 20px;
-  border-radius: 6px;
-}
-
-.cert-icon {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--eccAccent);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--eccAccent);
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-.cert-meta b {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  color: #fff;
-}
-
-.cert-meta span {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.08em;
+  line-height: 1.35;
 }
 
 /* ==========================================================================
@@ -1601,99 +1555,222 @@ body.no-scroll {
 }
 
 /* ==========================================================================
-   WHY CHOOSE US & WORK PROCESS SECTIONS (Business Package Deliverable)
+   BENTO GRID: WHY CHOOSE US & TURNKEY METHODOLOGY
    ========================================================================== */
-.section-why-us {
-  padding: 100px 50px;
+.section-why-bento {
+  padding: 85px 50px;
   background-color: var(--eccGray);
   border-top: 1px solid var(--eccGrayBorder);
 }
 
-.why-us-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.bento-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 30px;
-  margin-top: 50px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
 }
 
-.why-card {
+.bento-header-sub {
+  color: var(--eccTextMuted);
+  max-width: 480px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bento-grid-container {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.bento-card {
   background: #ffffff;
-  padding: 40px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid var(--eccGrayBorder);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
 }
 
-.why-card:hover {
-  transform: translateY(-5px);
+.bento-card:hover {
+  transform: translateY(-4px);
   border-color: var(--eccAccent);
+  box-shadow: 0 12px 30px rgba(3, 20, 39, 0.07);
 }
 
-.why-num {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--eccAccent);
-  margin-bottom: 15px;
+.bento-card-feat {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  background: radial-gradient(circle at top left, #ffffff 0%, #f8fafc 100%);
+  border-left: 3px solid var(--eccAccent);
 }
 
-.why-card h4 {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
+.bento-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--eccDark);
+  letter-spacing: 0.1em;
+  color: var(--eccAccent);
+  text-transform: uppercase;
   margin-bottom: 12px;
 }
 
-.why-card p {
-  color: var(--eccTextMuted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* Work Process Section */
-.section-process {
-  padding: 100px 50px;
-  background-color: #ffffff;
-}
-
-.process-steps-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-top: 50px;
-  position: relative;
-}
-
-.process-step-box {
-  background: #f8fafc;
-  border: 1px solid var(--eccGrayBorder);
-  border-radius: 6px;
-  padding: 30px;
-  position: relative;
-}
-
-.step-number-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--eccAccent);
-  margin-bottom: 15px;
-  display: block;
-}
-
-.process-step-box h4 {
+.bento-card h3 {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--eccDark);
+  line-height: 1.25;
   margin-bottom: 10px;
 }
 
-.process-step-box p {
+.bento-card p {
   color: var(--eccTextMuted);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   line-height: 1.55;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.bento-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bento-pill {
+  background: rgba(3, 20, 39, 0.05);
+  border: 1px solid rgba(3, 20, 39, 0.1);
+  color: var(--eccDark);
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.bento-stat-strip {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--eccGrayBorder);
+  margin-top: auto;
+}
+
+.bento-stat-strip div {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-stat-strip b {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--eccDark);
+  line-height: 1.1;
+}
+
+.bento-stat-strip span {
+  font-size: 0.72rem;
+  color: var(--eccTextMuted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 4th Bento Card: Spans entire bottom width */
+.bento-card-process {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #031427 0%, #0d2238 100%);
+  color: #ffffff;
+  border-color: #0d2238;
+}
+
+.bento-card-process .bento-tag {
+  color: var(--eccAccent);
+}
+
+.bento-card-process h3 {
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+.bento-process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.bento-step {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.bento-step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--eccAccent);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.bento-step b {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.bento-step p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Quick CTA Section */
+.section-quick-cta {
+  background-color: var(--eccGray);
+  padding: 60px 20px;
+  border-top: 1px solid var(--eccGrayBorder);
+  text-align: center;
+}
+
+.cta-inner-box {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.cta-sub-p {
+  color: var(--eccTextMuted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.cta-buttons-wrap {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-phone-btn {
+  background: var(--eccDark);
+  color: #fff !important;
+}
+
+.cta-phone-btn a {
+  color: #fff !important;
 }
 
 /* ==========================================================================
@@ -2813,17 +2890,16 @@ textarea.form-control {
   .grid-projects {
     grid-template-columns: 1fr;
   }
-  .why-us-grid {
+  .bento-grid-container {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
-  .process-steps-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .bento-card-feat {
+    grid-column: auto;
+    grid-row: auto;
   }
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .bento-process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
   .contact-layout-grid {
     grid-template-columns: 1fr;
@@ -2845,12 +2921,12 @@ textarea.form-control {
 @media (max-width: 768px) {
   /* Mobile Header */
   .site-header {
-    height: 66px;
+    height: 62px;
     padding: 0 16px;
     background: rgba(255, 255, 255, 0.98);
   }
   .site-header.scrolled {
-    height: 60px;
+    height: 56px;
   }
   .site-header.menu-open {
     background: rgba(3, 20, 39, 0.98);
@@ -2862,47 +2938,42 @@ textarea.form-control {
     background: #fff;
   }
   .brand-logo-img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .brand-names h1 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     letter-spacing: 0.01em;
   }
   .brand-names span {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
   }
   .header-actions {
     gap: 8px;
   }
   .header-phone-btn {
-    padding: 7px 10px;
-    font-size: 0.75rem;
-    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    background: #f1f5f9;
   }
   .header-phone-btn .phone-label-text {
     display: none;
   }
-  .header-phone-btn {
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    justify-content: center;
-    border-radius: 50%;
-    font-size: 0.95rem;
-    background: #f1f5f9;
-  }
   .header-cta-rfq {
-    padding: 7px 14px;
-    font-size: 0.82rem;
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
-  .header-cta-rfq button {
-    font-size: 0.82rem;
-    gap: 6px;
+  .header-cta-rfq a {
+    font-size: 0.8rem;
+    gap: 5px;
   }
   .nav-toggle-container {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     background: #f1f5f9;
     border-radius: 50%;
     display: flex;
@@ -2912,13 +2983,13 @@ textarea.form-control {
     cursor: pointer;
   }
   #nav-icon4 {
-    width: 18px;
-    height: 14px;
+    width: 17px;
+    height: 13px;
   }
 
   /* Fullscreen Menu on Mobile */
   .full-screen-navmenu {
-    padding: 0 20px 40px 20px;
+    padding: 0 18px 36px 18px;
   }
   .fsnm-mobile-top {
     display: flex;
@@ -2928,55 +2999,55 @@ textarea.form-control {
   }
   .fsnm-row {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 22px;
   }
   .fsnm-header {
-    font-size: 1.05rem;
-    margin-bottom: 14px;
-    padding-bottom: 8px;
+    font-size: 0.98rem;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
     color: var(--eccAccent);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
   .fsnm-list ul {
-    gap: 8px;
+    gap: 6px;
   }
   .fsnm-list li a {
     display: flex;
     align-items: center;
-    padding: 11px 14px;
+    padding: 10px 14px;
     background: rgba(255, 255, 255, 0.04);
     border-radius: 6px;
-    font-size: 0.95rem;
-    min-height: 44px;
+    font-size: 0.92rem;
+    min-height: 42px;
     color: rgba(255, 255, 255, 0.9);
   }
   .fsnm-contact-box {
     background: rgba(255, 255, 255, 0.04);
-    padding: 16px;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 0.88rem;
   }
   .fsnm-mobile-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 28px;
-    padding-top: 22px;
+    gap: 9px;
+    margin-top: 24px;
+    padding-top: 18px;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
   .fsnm-action-pill {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    padding: 13px 18px;
-    border-radius: 8px;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 6px;
     font-family: var(--font-heading);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
-    min-height: 48px;
+    min-height: 44px;
     cursor: pointer;
   }
   .call-pill {
@@ -2996,105 +3067,317 @@ textarea.form-control {
   /* Hero Showcase Slider Mobile */
   .showcase-ecc-slider {
     height: 100svh;
-    min-height: 580px;
+    min-height: 540px;
   }
   .project-inner {
-    padding: 0 20px;
-    padding-top: 70px;
-    padding-bottom: 85px;
+    padding: 0 18px;
+    padding-top: 65px;
+    padding-bottom: 75px;
   }
   .project-title {
-    font-size: clamp(1.85rem, 7.2vw, 2.7rem);
+    font-size: clamp(1.75rem, 6.8vw, 2.4rem);
     line-height: 1.12;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   .project-desc-short {
-    font-size: 0.94rem;
-    line-height: 1.5;
-    margin-bottom: 22px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-bottom: 18px;
     max-width: 100%;
   }
   .project-meta-pill {
-    font-size: 0.72rem;
-    padding: 5px 12px;
+    font-size: 0.68rem;
+    padding: 4px 10px;
+  }
+  .hero-actions-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-secondary-btn {
+    border-color: rgba(255, 255, 255, 0.4) !important;
   }
   .showcase-footer {
-    padding: 0 20px;
-    bottom: 22px;
+    padding: 0 18px;
+    bottom: 18px;
   }
   .slides-frac {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .slides-frac .curr {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
   .slider-btn {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
   }
 
-  /* Section Spacings on Mobile */
-  .section-welcome,
+  /* Compact Section Paddings on Mobile (Less Scrolling) */
+  .section-welcome-metrics,
   .section-expertise,
   .section-sectors,
   .section-video-stories,
   .section-projects,
-  .section-why-us,
-  .section-process,
+  .section-why-bento,
   .section-testimonials,
   .section-contact {
-    padding: 65px 20px;
+    padding: 42px 18px;
   }
 
-  /* Interactive Video Stories on Mobile */
+  /* Consolidated Executive Overview & 2x2 Performance Grid */
+  .overview-top-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .welcome-main-p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .compact-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 22px 18px;
+    gap: 16px 14px;
+    border-radius: 6px;
+  }
+  .compact-metric-card {
+    padding-left: 14px;
+    border-left-width: 2px;
+  }
+  .compact-num {
+    font-size: 1.65rem;
+    margin-bottom: 3px;
+  }
+  .compact-lbl {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  /* Expertise Cards on Mobile: Compact 200px (Saves ~400px of scrolling) */
+  .expertise-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .feature-menu-wrap {
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+  }
+  .feature-menu-item {
+    height: 190px;
+    flex: unset;
+    border-radius: 6px;
+  }
+  .feature-menu-link {
+    padding: 20px;
+  }
+  .feature-menu-item-wrap .heading {
+    font-size: 1.12rem;
+    margin-bottom: 6px;
+  }
+  .feature-menu-item-wrap .sub-heading {
+    font-size: 0.84rem;
+    line-height: 1.45;
+    opacity: 1;
+    max-height: 80px;
+    margin-bottom: 10px;
+  }
+  .feature-btn {
+    font-size: 0.8rem;
+  }
+
+  /* Video Stories on Mobile (Compact video & inline 3-metric row) */
+  .section-sub-desc {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .stories-tab-nav {
+    margin: 18px 0 20px 0;
+    gap: 8px;
+  }
+  .story-tab-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
   .story-stage-split {
     grid-template-columns: 1fr;
     min-height: auto;
+    border-radius: 8px;
   }
   .story-video-theater {
-    height: 300px;
+    height: 220px;
   }
   .story-details-panel {
-    padding: 30px 20px;
+    padding: 22px 16px;
+  }
+  .story-badge-category {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+  .story-title {
+    font-size: 1.35rem;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .story-execution-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 3px solid var(--eccAccent);
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .story-exec-item b {
+    display: block;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
   }
   .story-metrics-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding-top: 14px;
+    margin-bottom: 18px;
+  }
+  .story-metric-item b {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .story-metric-item span {
+    font-size: 0.68rem;
+    line-height: 1.2;
   }
   .story-telemetry-pill {
-    top: 15px;
-    left: 15px;
-    font-size: 0.68rem;
-    padding: 6px 12px;
+    top: 12px;
+    left: 12px;
+    font-size: 0.65rem;
+    padding: 5px 10px;
   }
   .story-video-controls {
-    bottom: 15px;
-    right: 15px;
+    bottom: 12px;
+    right: 12px;
+    gap: 8px;
+  }
+  .story-ctrl-btn {
+    padding: 6px 11px;
+    font-size: 0.7rem;
   }
 
-  /* Projects Filter Bar on Mobile */
+  /* Projects on Mobile (Height 270px) */
   .projects-header-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 20px;
   }
-  .projects-filter-bar {
+  .grid-projects {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .grid-project-item {
+    height: 270px;
+    border-radius: 6px;
+  }
+  .grid-project-overlay {
+    padding: 20px;
+  }
+  .grid-project-title {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+  .grid-project-loc {
+    font-size: 0.8rem;
+  }
+
+  /* Bento Grid on Mobile (Sleek cards, 1-col process) */
+  .bento-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .bento-header-sub {
+    font-size: 0.9rem;
+  }
+  .bento-grid-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .bento-card {
+    padding: 22px 18px;
+    border-radius: 6px;
+  }
+  .bento-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+  .bento-card p {
+    font-size: 0.86rem;
+    margin-bottom: 14px;
+  }
+  .bento-process-steps {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .bento-step {
+    padding: 12px 14px;
+  }
+
+  /* Horizontal Swipeable Testimonials on Mobile (Zero Vertical Bloat!) */
+  .testimonials-grid {
+    display: flex;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding-bottom: 8px;
-    margin-bottom: 30px;
+    gap: 14px;
     scrollbar-width: none;
+    margin-top: 20px;
+    padding-bottom: 8px;
   }
-  .projects-filter-bar::-webkit-scrollbar {
+  .testimonials-grid::-webkit-scrollbar {
     display: none;
   }
-  .filter-pill {
-    flex-shrink: 0;
-    padding: 8px 16px;
-    font-size: 0.82rem;
+  .testimonial-card {
+    flex: 0 0 calc(88vw - 32px);
+    scroll-snap-align: start;
+    padding: 24px 18px;
+    border-radius: 6px;
+  }
+  .testimonial-quote {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  /* Quick CTA on Mobile */
+  .section-quick-cta {
+    padding: 42px 18px;
+  }
+  .cta-sub-p {
+    font-size: 0.94rem;
+    margin-bottom: 20px;
+  }
+  .cta-buttons-wrap {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cta-buttons-wrap .ecc-button {
+    width: 100%;
+  }
+  .cta-buttons-wrap .ecc-button a {
+    justify-content: center;
+    width: 100%;
   }
 
   /* Lightbox Modal on Mobile */
@@ -3108,10 +3391,10 @@ textarea.form-control {
     border-radius: 8px;
   }
   .lightbox-img-box {
-    height: 240px;
+    height: 220px;
   }
   .lightbox-info-box {
-    padding: 22px 18px;
+    padding: 20px 16px;
   }
   .lightbox-close {
     top: 10px;
@@ -3121,49 +3404,37 @@ textarea.form-control {
     background: rgba(0, 0, 0, 0.6);
   }
 
-  /* Contact Form & Map on Mobile */
-  .contact-form-card {
-    padding: 24px 18px;
-  }
-  .form-control {
-    font-size: 16px !important; /* Prevents auto-zoom in iOS */
-    padding: 12px 14px;
-  }
-  .map-container-box {
-    min-height: 300px;
-    height: 300px;
-  }
-
   /* Floating WhatsApp & Call Buttons */
   .floating-actions-container {
-    bottom: 20px;
-    right: 18px;
+    bottom: 18px;
+    right: 16px;
     gap: 10px;
   }
   .floating-btn {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
   .floating-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
 
   /* Footer on Mobile */
   .site-footer {
-    padding: 55px 20px 30px 20px;
+    padding: 45px 18px 25px 18px;
   }
   .footer-top-row {
     grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
-    padding-bottom: 35px;
+    gap: 26px;
+    margin-bottom: 30px;
+    padding-bottom: 25px;
   }
   .footer-bottom-row {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     text-align: center;
+    font-size: 0.78rem;
   }
 }
 
@@ -3174,8 +3445,39 @@ textarea.form-control {
   .brand-names span {
     display: none;
   }
-  .counters-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  /* Preserve 2x2 grid on ultra-small screens! */
+  .compact-metrics-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px 10px;
+    padding: 18px 14px;
+  }
+  .compact-metric-card {
+    padding-left: 10px;
+  }
+  .compact-num {
+    font-size: 1.45rem;
+  }
+  .compact-lbl {
+    font-size: 0.64rem;
+  }
+  .section-welcome-metrics,
+  .section-expertise,
+  .section-video-stories,
+  .section-projects,
+  .section-why-bento,
+  .section-testimonials,
+  .section-quick-cta {
+    padding: 34px 14px;
+  }
+  .hero-actions-row {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions-row .ecc-button {
+    width: 100%;
+  }
+  .hero-actions-row .ecc-button a {
+    justify-content: center;
+    width: 100%;
   }
 }
