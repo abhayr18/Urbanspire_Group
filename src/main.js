@@ -1,10 +1,7 @@
-import { SceneManager } from './scene/sceneManager.js';
 import { companiesData } from './data/projectsData.js';
 
 class UrbanSpireApp {
   constructor() {
-    this.canvas = document.getElementById('webgl-canvas');
-    this.sceneManager = null;
     this.currentSlide = 0;
     this.totalSlides = 3;
     this.sliderTimer = null;
@@ -12,31 +9,25 @@ class UrbanSpireApp {
   }
 
   init() {
-    // 1. Initialize 3D Scene in the Studio Frame
-    if (this.canvas) {
-      this.sceneManager = new SceneManager(this.canvas);
-      this.sceneManager.setMode('marine'); // Start on iconic marine pontoon
-    }
-
-    // 2. Initialize Header & Fullscreen Menu
+    // 1. Initialize Header & Fullscreen Menu
     this.initHeaderAndMenu();
 
-    // 3. Initialize Hero Showcase Slider (ECC Video Style)
+    // 2. Initialize Hero Showcase Slider (ECC Video Style)
     this.initHeroSlider();
 
-    // 4. Initialize Expertise Horizontal Accordion
+    // 3. Initialize Expertise Horizontal Accordion
     this.initExpertiseAccordion();
 
-    // 5. Initialize Sectors Vertical Slats Accordion
+    // 4. Initialize Sectors Vertical Slats Accordion
     this.initSectorsAccordion();
 
-    // 6. Initialize 3D Studio Controls
-    this.initStudioControls();
+    // 5. Initialize Interactive Video Showcase Reel (Engineering in Motion)
+    this.initVideoStories();
 
-    // 7. Initialize Projects Portfolio & Lightbox Modals (6 Projects)
+    // 6. Initialize Projects Portfolio & Lightbox Modals (6 Projects)
     this.initPortfolioAndLightbox();
 
-    // 8. Initialize Smart Contact & RFQ Form with Spam Protection
+    // 7. Initialize Smart Contact & RFQ Form with Spam Protection
     this.initContactForm();
   }
 
@@ -226,83 +217,146 @@ class UrbanSpireApp {
     });
   }
 
-  initStudioControls() {
-    const modeTabs = document.querySelectorAll('.studio-tab-btn');
-    const titleEl = document.getElementById('studio-scene-title');
-    const descEl = document.getElementById('studio-scene-desc');
-    const coordsEl = document.getElementById('studio-telemetry-coords');
-    const explodeControls = document.getElementById('pontoon-explode-controls');
+  initVideoStories() {
+    const tabs = document.querySelectorAll('#stories-tabs .story-tab-btn');
+    const video = document.getElementById('story-main-video');
+    const videoSource = document.getElementById('story-video-source');
+    const telemetryText = document.getElementById('story-telemetry-text');
+    const badge = document.getElementById('story-badge');
+    const title = document.getElementById('story-title');
+    const challenge = document.getElementById('story-challenge');
+    const solution = document.getElementById('story-solution');
+    const metric1 = document.getElementById('story-metric-1');
+    const metric1Lbl = document.getElementById('story-metric-1-lbl');
+    const metric2 = document.getElementById('story-metric-2');
+    const metric2Lbl = document.getElementById('story-metric-2-lbl');
+    const metric3 = document.getElementById('story-metric-3');
+    const metric3Lbl = document.getElementById('story-metric-3-lbl');
+    const link = document.getElementById('story-link');
 
-    const sceneDescriptions = {
-      construction: {
-        title: "01. UrbanSpire Construction (Pune Civil)",
-        desc: "Procedural 18-storey architectural skyscraper with live crane mechanics, Nagara-style stone temple shikhara, and government administrative housing.",
-        coords: "18.52° N, 73.85° E (PNQ)",
-        showExplode: false
+    const toggleSoundBtn = document.getElementById('story-toggle-sound');
+    const soundIcon = document.getElementById('sound-icon');
+    const soundLabel = document.getElementById('sound-label');
+
+    const togglePlayBtn = document.getElementById('story-toggle-play');
+    const playIcon = document.getElementById('play-icon');
+    const playLabel = document.getElementById('play-label');
+
+    if (!tabs.length || !video) return;
+
+    const storiesData = {
+      civil: {
+        video: '/videos/slide_1.mp4',
+        poster: 'https://ecccontracting.ae/wp-content/uploads/2024/06/construction-hero-img.webp',
+        telemetry: 'Kharadi Core • 18.52° N, 73.85° E',
+        badge: 'URBANSPIRE CONSTRUCTION • PUNE',
+        title: 'The Zenith Spire: 34-Storey Core Execution & Seismic Zone IV',
+        challenge: 'Executing a continuous 72-hour massive raft concrete pour in a dense commercial corridor with zero cold joints and post-tensioned slab tolerances.',
+        solution: 'Integrated M60 silica fume mix design with automated core hydration temperature sensors, seismic shear walls, and BIM Level-3 coordinated MEP risers.',
+        m1: '1.2M', m1Lbl: 'Sq. Ft. Built Core',
+        m2: '72 Hrs', m2Lbl: 'Continuous Raft Pour',
+        m3: 'Zone IV', m3Lbl: 'Seismic Standards',
+        href: '/services.html#construction'
       },
       marine: {
-        title: "02. UrbanSpire Marine (Mumbai Pontoon)",
-        desc: "Unsinkable Virgin Closed-Cell EPS Core encased in M60 sulfate-resistant concrete. Engineered for tidal swells up to 6.2 meters with 50+ year service life.",
-        coords: "18.92° N, 72.83° E (BOM)",
-        showExplode: true
+        video: '/videos/slide_2.mp4',
+        poster: 'https://ecccontracting.ae/wp-content/uploads/w-residence-hero.jpg',
+        telemetry: 'Mumbai Harbor • 18.92° N, 72.83° E',
+        badge: 'URBANSPIRE MARINE • MUMBAI BERTH',
+        title: 'Gateway Terminal: Sea-Level Heavy Concrete Pontoon Deployment',
+        challenge: 'Naval harbor deployment in high-frequency passenger catamaran corridors subject to 6-meter tidal variations and severe Arabian Sea monsoon waves.',
+        solution: 'Heavy sea-level concrete pontoon featuring an unsinkable Virgin Closed-Cell EPS Core encased in M60 sulfate-resistant concrete with hydraulic mooring dampers.',
+        m1: '140+', m1Lbl: 'Pontoons Deployed',
+        m2: '4.5 kN/m²', m2Lbl: 'Payload Capacity',
+        m3: '50+ Yrs', m3Lbl: 'Design Service Life',
+        href: '/services.html#marine'
+      },
+      temple: {
+        video: '/videos/slide_1.mp4',
+        poster: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=1200&q=80',
+        telemetry: 'Dehu-Alandi Belt • 18.67° N, 73.78° E',
+        badge: 'URBANSPIRE HERITAGE • SACRED ARCHITECTURE',
+        title: 'Shri Someshwar Temple: Monolithic Dry-Stone Shikhara Engineering',
+        challenge: 'Constructing an 85-foot monolithic basalt stone shikhara and a 1,000-person column-free prayer hall without central pillars or modern cement joints.',
+        solution: 'Precision hand-chiselled dry basalt interlocking blocks utilizing gravity-locked mortise joints paired with deep micro-pile seismic isolation.',
+        m1: '85 Ft', m1Lbl: 'Basalt Shikhara',
+        m2: '1,000', m2Lbl: 'Column-Free Capacity',
+        m3: '100%', m3Lbl: 'Dry Stone Interlock',
+        href: '/projects.html'
       },
       global: {
-        title: "03. UrbanSpire Global (Dubai Trade Hub)",
-        desc: "Interactive 3D celestial globe with flight and shipping trajectories linking Indian fabrication yards to Dubai Business Bay headquarters.",
-        coords: "25.20° N, 55.27° E (DXB)",
-        showExplode: false
+        video: '/videos/slide_3.mp4',
+        poster: 'https://ecccontracting.ae/wp-content/uploads/2024/07/excellence-at-the-core-1.jpg',
+        telemetry: 'Jebel Ali / Business Bay • 25.20° N, 55.27° E',
+        badge: 'URBANSPIRE GLOBAL SERVICES • DUBAI',
+        title: 'GCC Maritime Mobilization: 350-Ton Crawler Cranes & Offshore Rigs',
+        challenge: 'Accelerated cross-border deployment of high-capacity rotary piling rigs and specialized microsilica cements for critical port expansion contracts.',
+        solution: 'Turnkey fleet chartering, direct customs transit corridors, and specialized technical due diligence for international joint-venture EPC projects.',
+        m1: '$120M+', m1Lbl: 'Procurement Volume',
+        m2: '4x 350T', m2Lbl: 'Crawler Cranes',
+        m3: 'Tier-1', m3Lbl: 'Logistics Network',
+        href: '/services.html#global'
       }
     };
 
-    modeTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const mode = btn.getAttribute('data-mode');
-        modeTabs.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const key = tab.getAttribute('data-story');
+        const data = storiesData[key];
+        if (!data) return;
 
-        if (this.sceneManager) {
-          this.sceneManager.setMode(mode);
-        }
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-        const data = sceneDescriptions[mode];
-        if (data) {
-          if (titleEl) titleEl.textContent = data.title;
-          if (descEl) descEl.textContent = data.desc;
-          if (coordsEl) coordsEl.textContent = data.coords;
-          if (explodeControls) {
-            explodeControls.style.display = data.showExplode ? 'flex' : 'none';
-          }
-        }
+        // Smooth switch video
+        video.style.opacity = '0.3';
+        setTimeout(() => {
+          if (videoSource) videoSource.src = data.video;
+          video.poster = data.poster;
+          video.load();
+          video.play().catch(() => {});
+          video.style.opacity = '1';
+        }, 200);
+
+        // Update story details
+        if (telemetryText) telemetryText.textContent = data.telemetry;
+        if (badge) badge.textContent = data.badge;
+        if (title) title.textContent = data.title;
+        if (challenge) challenge.textContent = data.challenge;
+        if (solution) solution.textContent = data.solution;
+        if (metric1) metric1.textContent = data.m1;
+        if (metric1Lbl) metric1Lbl.textContent = data.m1Lbl;
+        if (metric2) metric2.textContent = data.m2;
+        if (metric2Lbl) metric2Lbl.textContent = data.m2Lbl;
+        if (metric3) metric3.textContent = data.m3;
+        if (metric3Lbl) metric3Lbl.textContent = data.m3Lbl;
+        if (link) link.href = data.href;
       });
     });
 
-    // Pontoon Exploded View Buttons
-    const btnSolid = document.getElementById('btn-studio-solid');
-    const btnExploded = document.getElementById('btn-studio-exploded');
-
-    if (btnSolid && btnExploded) {
-      btnSolid.addEventListener('click', () => {
-        btnSolid.classList.add('active');
-        btnExploded.classList.remove('active');
-        if (this.sceneManager) this.sceneManager.setPontoonExploded(false);
-      });
-
-      btnExploded.addEventListener('click', () => {
-        btnExploded.classList.add('active');
-        btnSolid.classList.remove('active');
-        if (this.sceneManager) this.sceneManager.setPontoonExploded(true);
+    // Sound toggle
+    if (toggleSoundBtn) {
+      toggleSoundBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (soundIcon) soundIcon.textContent = video.muted ? '🔇' : '🔊';
+        if (soundLabel) soundLabel.textContent = video.muted ? 'Unmute' : 'Mute';
       });
     }
-  }
 
-  syncStudioUI(mode) {
-    const modeTabs = document.querySelectorAll('.studio-tab-btn');
-    modeTabs.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-mode') === mode);
-    });
-    const clickEvent = new Event('click');
-    const activeBtn = Array.from(modeTabs).find(b => b.getAttribute('data-mode') === mode);
-    if (activeBtn) activeBtn.dispatchEvent(clickEvent);
+    // Play / Pause toggle
+    if (togglePlayBtn) {
+      togglePlayBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          if (playIcon) playIcon.textContent = '⏸';
+          if (playLabel) playLabel.textContent = 'Pause';
+        } else {
+          video.pause();
+          if (playIcon) playIcon.textContent = '▶';
+          if (playLabel) playLabel.textContent = 'Play';
+        }
+      });
+    }
   }
 
   initPortfolioAndLightbox() {

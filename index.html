@@ -148,7 +148,7 @@
                 <li><a href="/services.html#construction" class="fsnm-link">UrbanSpire Construction (Pune)</a></li>
                 <li><a href="/services.html#marine" class="fsnm-link">UrbanSpire Marine (Mumbai)</a></li>
                 <li><a href="/services.html#global" class="fsnm-link">UrbanSpire Global (Dubai)</a></li>
-                <li><a href="#studio3d" class="fsnm-link">3D Engineering Simulator</a></li>
+                <li><a href="#engineering-chronicles" class="fsnm-link">On-Site Chronicles</a></li>
               </ul>
             </div>
           </div>
@@ -457,43 +457,96 @@
       </div>
     </section>
 
-    <!-- INTEGRATED 3D ENGINEERING SIMULATOR STUDIO -->
-    <section class="section-3d-studio" id="studio3d">
-      <div class="studio-container">
-        <span class="h2-line-bottom">Interactive Laboratory</span>
-        <h2 class="welcome-header-title">3D Engineering Simulation Studio</h2>
-        <p style="color: var(--eccTextMuted); max-width: 750px; font-size: 1.05rem; margin-bottom: 35px;">
-          Inspect real-time 3D models for Civil Construction (Pune), Marine Pontoons (Mumbai), and Global Logistics (Dubai).
+    <!-- ENGINEERING IN MOTION: TABBED SECTOR VIDEO DOCUMENTARY REEL -->
+    <section class="section-video-stories" id="engineering-chronicles">
+      <div class="video-stories-container">
+        <span class="h2-line-bottom">Engineering In Motion</span>
+        <h2 class="welcome-header-title">On-Site Chronicles & Landmark Milestones</h2>
+        <p style="color: var(--eccTextMuted); max-width: 780px; font-size: 1.05rem; margin-bottom: 25px; line-height: 1.6;">
+          Witness the heavy plant mobilization, deep geotechnical tolerances, and marine execution driving UrbanSpire infrastructure across Western India and the United Arab Emirates.
         </p>
 
-        <div class="studio-frame">
-          <canvas id="webgl-canvas"></canvas>
+        <!-- Tabbed Sector Navigation -->
+        <div class="stories-tab-nav" id="stories-tabs">
+          <button class="story-tab-btn active" data-story="civil">
+            <span class="tab-dot"></span> 01. High-Rise Tower (Pune)
+          </button>
+          <button class="story-tab-btn" data-story="marine">
+            <span class="tab-dot"></span> 02. Marine Pontoons (Mumbai)
+          </button>
+          <button class="story-tab-btn" data-story="temple">
+            <span class="tab-dot"></span> 03. Sacred Stone Temple
+          </button>
+          <button class="story-tab-btn" data-story="global">
+            <span class="tab-dot"></span> 04. Heavy EPC Fleet (Dubai)
+          </button>
+        </div>
 
-          <div class="studio-overlay-controls">
-            <div class="studio-badge">REAL-TIME WEBGL INSPECTOR</div>
-            <h4 id="studio-scene-title">02. Marine Concrete Pontoon</h4>
-            <p id="studio-scene-desc">
-              Engineered with an unsinkable Virgin Closed-Cell EPS Core encased in M60 sulfate-resistant concrete. Toggle below to inspect the interior structure.
+        <!-- Theater Split Stage -->
+        <div class="story-stage-split">
+          <!-- Left: Video Theater -->
+          <div class="story-video-theater">
+            <video class="story-video-el" id="story-main-video" autoplay loop muted playsinline poster="https://ecccontracting.ae/wp-content/uploads/2024/06/construction-hero-img.webp">
+              <source src="/videos/slide_1.mp4" type="video/mp4" id="story-video-source" />
+            </video>
+            <div class="story-video-overlay-gradient"></div>
+            
+            <div class="story-telemetry-pill" id="story-telemetry">
+              <span>● LIVE REEL</span>
+              <span>|</span>
+              <span id="story-telemetry-text">Kharadi Core • 18.52° N, 73.85° E</span>
+            </div>
+
+            <div class="story-video-controls">
+              <button type="button" class="story-ctrl-btn" id="story-toggle-sound" title="Toggle Sound">
+                <span id="sound-icon">🔇</span> <span id="sound-label">Unmute</span>
+              </button>
+              <button type="button" class="story-ctrl-btn" id="story-toggle-play" title="Pause/Play Video">
+                <span id="play-icon">⏸</span> <span id="play-label">Pause</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Milestone Details -->
+          <div class="story-details-panel">
+            <div class="story-badge-category" id="story-badge">URBANSPIRE CONSTRUCTION • PUNE</div>
+            <h3 class="story-title" id="story-title">The Zenith Spire: 34-Storey Core Execution & Seismic Zone IV</h3>
+            
+            <div class="story-challenge-box">
+              <b>The Engineering Challenge:</b>
+              <span id="story-challenge">
+                Executing a continuous 72-hour massive raft concrete pour in a dense commercial corridor with zero cold joints and post-tensioned slab tolerances.
+              </span>
+            </div>
+
+            <p class="story-solution-text" id="story-solution">
+              Integrated M60 silica fume mix design with automated core hydration temperature sensors, seismic shear walls, and BIM Level-3 coordinated MEP risers.
             </p>
 
-            <div class="studio-nav-tabs">
-              <button class="studio-tab-btn" data-mode="construction">01. Pune Civil</button>
-              <button class="studio-tab-btn active" data-mode="marine">02. Mumbai Pontoon</button>
-              <button class="studio-tab-btn" data-mode="global">03. Dubai Globe</button>
+            <div class="story-metrics-grid">
+              <div class="story-metric-item">
+                <b id="story-metric-1">1.2M</b>
+                <span id="story-metric-1-lbl">Sq. Ft. Built Core</span>
+              </div>
+              <div class="story-metric-item">
+                <b id="story-metric-2">72 Hrs</b>
+                <span id="story-metric-2-lbl">Continuous Raft Pour</span>
+              </div>
+              <div class="story-metric-item">
+                <b id="story-metric-3">Zone IV</b>
+                <span id="story-metric-3-lbl">Seismic Standards</span>
+              </div>
             </div>
 
-            <div class="pontoon-explode-toggle" id="pontoon-explode-controls">
-              <button class="explode-btn active" id="btn-studio-solid">Solid View</button>
-              <button class="explode-btn" id="btn-studio-exploded">Exploded View (EPS Core)</button>
+            <div>
+              <a href="/services.html#construction" class="story-action-link" id="story-link">
+                <span>Explore Full Technical Capabilities</span>
+                <span>→</span>
+              </a>
             </div>
-          </div>
-
-          <div class="studio-telemetry-badge">
-            <span>● 60 FPS Studio Runtime</span>
-            <span>|</span>
-            <span id="studio-telemetry-coords">18.92° N, 72.83° E (BOM)</span>
           </div>
         </div>
+
       </div>
     </section>
 
