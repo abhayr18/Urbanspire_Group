@@ -68,15 +68,11 @@ class UrbanSpireApp {
       });
     }
 
-    // Attach resilience and graceful poster fallback to all videos on the page
+    // Ensure all videos have muted and playsinline properties set for seamless autoplay
     document.querySelectorAll('video').forEach(vid => {
-      vid.addEventListener('error', () => {
-        // Fallback to high-res poster seamlessly if network fails or autoplay blocked
-        vid.style.opacity = '0';
-      });
-      vid.addEventListener('playing', () => {
-        vid.style.opacity = '1';
-      });
+      vid.muted = true;
+      vid.defaultMuted = true;
+      vid.playsInline = true;
     });
   }
 
@@ -170,13 +166,36 @@ class UrbanSpireApp {
 
     if (!slides.length) return;
 
+    const playVideo = (vid) => {
+      if (!vid) return;
+      vid.muted = true;
+      vid.defaultMuted = true;
+      vid.playsInline = true;
+      const p = vid.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // If browser restricts un-interacted autoplay, unlock on first touch/click/scroll
+          const unlock = () => {
+            vid.muted = true;
+            vid.play().catch(() => {});
+            window.removeEventListener('click', unlock);
+            window.removeEventListener('touchstart', unlock);
+            window.removeEventListener('scroll', unlock);
+          };
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('touchstart', unlock, { once: true });
+          window.addEventListener('scroll', unlock, { once: true });
+        });
+      }
+    };
+
     const showSlide = (index) => {
       slides.forEach((s, idx) => {
         s.classList.toggle('active', idx === index);
         const vid = s.querySelector('video');
         if (vid) {
           if (idx === index) {
-            vid.play().catch(() => {});
+            playVideo(vid);
           } else {
             vid.pause();
           }
@@ -189,10 +208,13 @@ class UrbanSpireApp {
 
       // Pre-warm the next slide's video for instant zero-latency transition
       const nextVid = slides[(index + 1) % this.totalSlides]?.querySelector('video');
-      if (nextVid && nextVid.preload === 'none') {
-        nextVid.preload = 'metadata';
+      if (nextVid) {
+        nextVid.preload = 'auto';
       }
     };
+
+    // Immediately trigger slide 0 video playback
+    showSlide(0);
 
     const nextSlide = () => {
       const next = (this.currentSlide + 1) % this.totalSlides;
@@ -301,7 +323,7 @@ class UrbanSpireApp {
 
     const storiesData = {
       civil: {
-        video: '/videos/construction.mp4',
+        video: './videos/construction.mp4',
         poster: 'https://images.unsplash.com/photo-1541888946425-d0fbb1861593?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Kharadi Core • 18.52° N, 73.85° E',
         badge: 'URBANSPIRE CONSTRUCTION • PUNE',
@@ -314,7 +336,7 @@ class UrbanSpireApp {
         href: '/services.html#construction'
       },
       marine: {
-        video: '/videos/marine.mp4',
+        video: './videos/marine.mp4',
         poster: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Mumbai Harbor • 18.92° N, 72.83° E',
         badge: 'URBANSPIRE MARINE • MUMBAI BERTH',
@@ -327,7 +349,7 @@ class UrbanSpireApp {
         href: '/services.html#marine'
       },
       temple: {
-        video: '/videos/construction.mp4',
+        video: './videos/construction.mp4',
         poster: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=1200&q=80',
         telemetry: 'Dehu-Alandi Belt • 18.67° N, 73.78° E',
         badge: 'URBANSPIRE HERITAGE • SACRED ARCHITECTURE',
@@ -340,7 +362,7 @@ class UrbanSpireApp {
         href: '/projects.html'
       },
       global: {
-        video: '/videos/dubai.mp4',
+        video: './videos/dubai.mp4',
         poster: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Jebel Ali / Business Bay • 25.20° N, 55.27° E',
         badge: 'URBANSPIRE GLOBAL SERVICES • DUBAI',
