@@ -2350,13 +2350,37 @@ body.no-scroll {
 
 @media (max-width: 768px) {
   .page-header-banner {
-    padding: 110px 20px 40px 20px;
+    padding: 95px 18px 32px 18px;
+  }
+  .banner-title {
+    font-size: clamp(1.75rem, 6.5vw, 2.4rem);
+    margin-bottom: 10px;
+  }
+  .banner-subtitle {
+    font-size: 0.94rem;
+    line-height: 1.5;
   }
   .subpage-section {
-    padding: 50px 20px;
+    padding: 38px 18px;
   }
   .cert-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .service-card-info {
+    padding: 22px 18px;
+  }
+  .service-card-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+  .capability-pills-row {
+    padding: 16px 18px;
+    gap: 8px;
+  }
+  .cap-pill {
+    font-size: 0.78rem;
+    padding: 6px 12px;
   }
 }
 
