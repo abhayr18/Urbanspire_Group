@@ -29,6 +29,55 @@ class UrbanSpireApp {
 
     // 7. Initialize Smart Contact & RFQ Form with Spam Protection
     this.initContactForm();
+
+    // 8. Initialize High Performance Lazy Video Loading (IntersectionObserver)
+    this.initLazyVideos();
+  }
+
+  initLazyVideos() {
+    const lazyVideos = document.querySelectorAll('video[data-lazy-video]');
+    if (!lazyVideos.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const sources = video.querySelectorAll('source[data-src]');
+            sources.forEach(source => {
+              source.src = source.getAttribute('data-src');
+              source.removeAttribute('data-src');
+            });
+            video.load();
+            video.play().catch(() => {});
+            obs.unobserve(video);
+          }
+        });
+      }, { rootMargin: '300px 0px' });
+
+      lazyVideos.forEach(v => observer.observe(v));
+    } else {
+      lazyVideos.forEach(video => {
+        const sources = video.querySelectorAll('source[data-src]');
+        sources.forEach(source => {
+          source.src = source.getAttribute('data-src');
+          source.removeAttribute('data-src');
+        });
+        video.load();
+        video.play().catch(() => {});
+      });
+    }
+
+    // Attach resilience and graceful poster fallback to all videos on the page
+    document.querySelectorAll('video').forEach(vid => {
+      vid.addEventListener('error', () => {
+        // Fallback to high-res poster seamlessly if network fails or autoplay blocked
+        vid.style.opacity = '0';
+      });
+      vid.addEventListener('playing', () => {
+        vid.style.opacity = '1';
+      });
+    });
   }
 
   initHeaderAndMenu() {
@@ -137,6 +186,12 @@ class UrbanSpireApp {
         currNum.textContent = `0${index + 1}`;
       }
       this.currentSlide = index;
+
+      // Pre-warm the next slide's video for instant zero-latency transition
+      const nextVid = slides[(index + 1) % this.totalSlides]?.querySelector('video');
+      if (nextVid && nextVid.preload === 'none') {
+        nextVid.preload = 'metadata';
+      }
     };
 
     const nextSlide = () => {
@@ -246,8 +301,8 @@ class UrbanSpireApp {
 
     const storiesData = {
       civil: {
-        video: '/videos/slide_1.mp4',
-        poster: 'https://ecccontracting.ae/wp-content/uploads/2024/06/construction-hero-img.webp',
+        video: '/videos/construction.mp4',
+        poster: 'https://images.unsplash.com/photo-1541888946425-d0fbb1861593?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Kharadi Core • 18.52° N, 73.85° E',
         badge: 'URBANSPIRE CONSTRUCTION • PUNE',
         title: 'The Zenith Spire: 34-Storey Core Execution & Seismic Zone IV',
@@ -259,8 +314,8 @@ class UrbanSpireApp {
         href: '/services.html#construction'
       },
       marine: {
-        video: '/videos/slide_2.mp4',
-        poster: 'https://ecccontracting.ae/wp-content/uploads/w-residence-hero.jpg',
+        video: '/videos/marine.mp4',
+        poster: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Mumbai Harbor • 18.92° N, 72.83° E',
         badge: 'URBANSPIRE MARINE • MUMBAI BERTH',
         title: 'Gateway Terminal: Sea-Level Heavy Concrete Pontoon Deployment',
@@ -272,7 +327,7 @@ class UrbanSpireApp {
         href: '/services.html#marine'
       },
       temple: {
-        video: '/videos/slide_1.mp4',
+        video: '/videos/construction.mp4',
         poster: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=1200&q=80',
         telemetry: 'Dehu-Alandi Belt • 18.67° N, 73.78° E',
         badge: 'URBANSPIRE HERITAGE • SACRED ARCHITECTURE',
@@ -285,8 +340,8 @@ class UrbanSpireApp {
         href: '/projects.html'
       },
       global: {
-        video: '/videos/slide_3.mp4',
-        poster: 'https://ecccontracting.ae/wp-content/uploads/2024/07/excellence-at-the-core-1.jpg',
+        video: '/videos/dubai.mp4',
+        poster: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
         telemetry: 'Jebel Ali / Business Bay • 25.20° N, 55.27° E',
         badge: 'URBANSPIRE GLOBAL SERVICES • DUBAI',
         title: 'GCC Maritime Mobilization: 350-Ton Crawler Cranes & Offshore Rigs',
